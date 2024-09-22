@@ -4,3 +4,7 @@ resource "aws_vpc" "main" {
   enable_dns_hostnames = true
   tags = merge(var.tags, {Name="${var.env}-vpc"})
 }
+
+module "subnets" {
+  source = "./subnets"
+}
