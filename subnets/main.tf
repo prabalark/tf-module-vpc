@@ -1,6 +1,6 @@
 resource "aws_subnet" "main" {
 
-  count = length(var.cidr_block)
+  count = length(var.cidr_block)  # public & private
   vpc_id     = var.vpc_id
   cidr_block = var.cidr_block[count.index]
 
