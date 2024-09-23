@@ -7,4 +7,6 @@ resource "aws_vpc" "main" {
 
 module "subnets" {
   source = "./subnets"
+
+
 }
