@@ -8,7 +8,7 @@ resource "aws_vpc" "main" {
 module "subnets" {
   source = "./subnets"
 
-  for_each = var.subnets # this variable in terraform
+  for_each = var.subnets
   vpc_id = aws_vpc.main.id  #this is from aws_vpc
   cidr_block = each.value["cidr_block"]
   name =each.value["name"]
