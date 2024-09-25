@@ -40,6 +40,6 @@ resource "aws_eip" "ngw" {
 #  }
 
 
-output "vpc" {
-  value = "module.vpc"
-}
+#output "vpc" {
+#  value = "module.vpc"
+#}
