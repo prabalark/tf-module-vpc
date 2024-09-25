@@ -28,7 +28,7 @@ resource "aws_internet_gateway" "igw" {
 resource "aws_eip" "ngw" {
   count = length(lookup(lookup(var.subnets,"public",null),"cidr_block",0))
   vpc   = true
-  tags  = merge(var.tags, {Name="${var.env}-ngw"}) #to get name
+  tags  = merge(var.tags, {Name="${var.env}-engw"}) #to get name
 }
 
 # need to get list of subnets ,so 1st do outputs.tf
