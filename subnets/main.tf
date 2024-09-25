@@ -14,3 +14,11 @@ resource "aws_route_table" "main" {
 
   tags  = merge(var.tags, {Name="${var.env}-${var.name}-rt-${count.index+1}"}) #to get name
 }
+
+#link : Attach public & private-router to the subnet [ public subnets – adding internet gateway || private subnet – adding nat-gate ]
+
+resource "aws_route_table_association" "associate" {
+  count =  length(var.cidr_block)
+  subnet_id      = aws_subnet.main.id
+  route_table_id = aws_route_table.main.id
+}
