@@ -45,9 +45,3 @@ resource "aws_nat_gateway" "ngw" {
 #  value = "module.vpc"
 #}
 
-resource "aws_route_table" "main" {
-  count = length(var.cidr_block)
-  vpc_id = aws_vpc.main.id
-
-  tags  = merge(var.tags, {Name="${var.env}-${var.name}-rt-${count.index+1}"}) #to get name
-}
