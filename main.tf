@@ -38,3 +38,8 @@ resource "aws_eip" "ngw" {
 #  subnet_id     = module.subnets["public"].subnet_ids[count.index] #need to get list of subnets
 #  tags          = merge(var.tags, {Name="${var.env}-ngw"}) #to get name
 #  }
+
+
+output "vpc" {
+  value = "module.vpc"
+}
