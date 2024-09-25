@@ -36,6 +36,7 @@ resource "aws_nat_gateway" "ngw" {
   count = length(var.subnets["public"].cidr_block) #multiple ngw are taking
   allocation_id = aws_eip.ngw[count.index].id   #elip linking
   subnet_id     = module.subnets["public"].subnet_ids[count.index] #need to get list of subnets
+
   tags  = merge(var.tags, {Name="${var.env}-ngw"}) #to get name
 }
 
