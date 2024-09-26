@@ -1,7 +1,7 @@
 resource "aws_subnet" "main" {
 
   count = length(var.cidr_block)  # public & private
-  vpc_id     = var.vpc_id
+  vpc_id     = var.vpc_id #this is from aws_vpc
   cidr_block = var.cidr_block[count.index]
   availability_zone = var.azs[count.index]
   tags = merge(var.tags, {Name="${var.env}-${var.name}-${count.index+1}"})
@@ -9,7 +9,7 @@ resource "aws_subnet" "main" {
 
 resource "aws_route_table" "main" {
   count = length(var.cidr_block)
-  vpc_id = var.vpc_id
+  vpc_id = var.vpc_id #this is from aws_vpc
 
   tags  = merge(var.tags, {Name="${var.env}-${var.name}-rt-${count.index+1}"}) #to get name
 }
