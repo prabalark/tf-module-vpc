@@ -40,8 +40,15 @@ resource "aws_nat_gateway" "ngw" {
   tags  = merge(var.tags, {Name="${var.env}-ngw"}) #to get name
 }
 
-
 #output "vpc" {
 #  value = "module.vpc"
 #}
 
+# This step we will do in route table creation in manual step
+# public bcz internet_gateway
+resource "aws_route" "rtprigw" {
+  count                  = length(module.subnets["public"].route_table_ids)
+  route_table_id         = module.subnets["public"].route_table_ids[count.index]
+  gateway_id             = aws_internet_gateway.igw.id
+  destination_cidr_block = "0.0.0.0/0"
+}
