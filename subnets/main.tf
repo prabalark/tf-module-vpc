@@ -20,3 +20,11 @@ resource "aws_route_table_association" "associate" {
   subnet_id      = aws_subnet.main[count.index].id
   route_table_id = aws_route_table.main[count.index].id
 }
+
+# This step we will do in route table creation in manual step
+resource "aws_route" "rtprigw" {
+  count =  length(module.subnets["public"].route_table_ids)
+  route_table_id = module.subnets["public"].route_table_ids[count.index]
+  gateway_id             = aws_internet_gateway.igw.id
+  destination_cidr_block = "0.0.0.0/0"
+}
