@@ -41,7 +41,7 @@ resource "aws_nat_gateway" "ngw" {
 }
 
 
-output "vpc" {
-  value = "module.vpc"
-}
+#output "vpc" {
+#  value = "module.vpc"
+#}
 
