@@ -22,6 +22,7 @@ resource "aws_route_table_association" "associate" {
 }
 
 # This step we will do in route table creation in manual step
+  # public bcz internet_gateway
 resource "aws_route" "rtprigw" {
   count                  = length(module.subnets["public"].route_table_ids)
   route_table_id         = module.subnets["public"].route_table_ids[count.index]
