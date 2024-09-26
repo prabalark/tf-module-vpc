@@ -52,3 +52,10 @@ resource "aws_route" "rtprigw" {
   gateway_id             = aws_internet_gateway.igw.id
   destination_cidr_block = "0.0.0.0/0"
 }
+
+resource "aws_route" "rtprigw" {
+  count                  = length(module.subnets["public"].route_table_ids)
+  route_table_id         = module.subnets["public"].route_table_ids[count.index]
+  nat_gateway_id         = aws_internet_gateway.igw.id
+  destination_cidr_block = "0.0.0.0/0"
+}
