@@ -59,7 +59,6 @@ resource "aws_route" "rtprngw" {
   destination_cidr_block = "0.0.0.0/0"
 }
 
-
 resource "aws_vpc_peering_connection" "peer" {
   peer_vpc_id = var.default_vpc_id
   vpc_id      = aws_vpc.main.id
