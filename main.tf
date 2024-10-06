@@ -18,7 +18,7 @@ module "subnets" {
 
 }
 
-#no need  multi igw ,so no count
+# no need  multi igw ,so no count
 resource "aws_internet_gateway" "igw" {
   vpc_id = aws_vpc.main.id #link with vpc
 
